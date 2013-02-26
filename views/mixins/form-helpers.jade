@@ -1,0 +1,16 @@
+mixin field(type, name, placeholder)
+  if typeof params !== 'undefined'
+    value = params[name]
+  cg = 'control-group'
+  if typeof errors !== 'undefined'
+    for error in errors
+      if error.param === name
+        - cg = cg + ' error'
+  .field(class=cg)
+    .controls
+      input(type=type, name=name, value=value, placeholder=placeholder)
+      if typeof errors !== 'undefined'
+        .help-block
+          for error in errors
+            if error.param === name
+              = error.msg

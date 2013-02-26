@@ -1,0 +1,16 @@
+extends ../layout
+include ../mixins/form-helpers
+
+block content
+  .container
+    // register form
+    form(action="/signup", method="post")
+      mixin field('text', 'firstName', 'First Name')
+      mixin field('text', 'lastName', 'Last Name')
+      mixin field('text', 'email', 'Email')
+      mixin field('password', 'password', 'Password')
+      mixin field('text', 'username', 'Username')
+      .control-group
+        .controls
+          input(type="submit", value="Sign Up!", class="btn btn-primary")
+    // end register form

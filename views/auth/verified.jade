@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+  // verified page
+  .container
+    p
+      | Welcome #{firstName}! Your account for #{email} is all set up and ready to go. You may now 
+      a(href='/login') log in
+      | .
+  // end verified page

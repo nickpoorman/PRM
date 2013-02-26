@@ -1,0 +1,14 @@
+extends ../../layout
+include ../../mixins/form-helpers
+
+block content
+  .container
+    // login form
+    form(action="/login", method="post")
+      mixin field('text', 'email', 'Username or email')
+      mixin field('password', 'password', 'Password')
+      .control-group
+        .controls
+          input(type="submit", value="Login", class="btn btn-primary")
+          a(href="/forgot-password") Forgot Password?
+    // end login form

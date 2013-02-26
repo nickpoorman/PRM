@@ -1,0 +1,12 @@
+extends ../../layout
+include ../../mixins/form-helpers
+
+block content
+  .container
+    // resend activation email
+    form(action="/auth/resend-activation-email", method="post")
+      mixin field('text', 'email', 'Email')
+      .control-group
+        .controls
+          input(type="submit", value="Send", class="btn btn-primary")
+    // end resend activation email
