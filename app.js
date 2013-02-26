@@ -42,7 +42,7 @@ var sessionStore = new RedisStore(clientOption);
 // Database | MongoDB -----------------------------------------------------------
 var mongoose = require('mongoose');
 //var Schema = mongoose.Schema;
-var uri = "mongodb://localhost/prm"
+var uri = "mongodb://localhost/friendglu"
 if('production' == app.get('env')) {
   uri = 'mongodb://nodejitsu_nickpoorman.............';
 }
@@ -117,7 +117,7 @@ app.use(passport.session());
 app.use(function(req, res, next) {
   res.locals.currentUser = req.user;
   res.locals.session = req.session;
-  res.locals.title = "PRM &middot; Personal Relations Management";
+  res.locals.title = "FriendGlu &middot; PRM";
   next();
 });
 app.use(app.router);
