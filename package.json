@@ -1,8 +1,8 @@
 {
-  "name": "Zapwire",
-  "description": "Zapwire app.",
-  "url": "http://www.zapwire.me",
-  "author": "Nick Poorman <nick@zapwire.me>",
+  "name": "FriendGlu",
+  "description": "FriendGlu app.",
+  "url": "http://www.friendglu.com",
+  "author": "Nick Poorman <nick@friendglu.com>",
   "contributors": [],
   "version": "0.0.1-9",
   "private": true,
@@ -31,10 +31,10 @@
     "forms": "~0.1.4",
     "jade": "~0.28.1"
   },
-  "subdomain": "nickpoorman.zapwire",
+  "subdomain": "nickpoorman.friendglu",
   "domains": [
-    "zapwire.me",
-    "www.zapwire.me"
+    "friendglu.com",
+    "www.friendglu.com"
   ],
   "scripts": {
     "start": "app.js"

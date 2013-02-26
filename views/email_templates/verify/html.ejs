@@ -5,21 +5,21 @@
 <title>New Signup</title>
 </head>
 <body>
-<p> <span style="color: rgb(17, 17, 17); text-align: justify; "><img alt="Regattable logo" height="73px" src="<%= logoUrl %>" /></span> </p>
+<p> <span style="color: rgb(17, 17, 17); text-align: justify; "><img alt="FriendGlu logo" height="73px" src="<%= logoUrl %>" /></span> </p>
 <p>Hello <%= user.firstName %>,</p>
-<p>You have entered <%= user.email %> as the contact email address for your Regattable account.</p>
+<p>You have entered <%= user.email %> as the contact email address for your FriendGlu account.</p>
 <p>To verify that the email address belongs to you, simply click this link or paste it into your browser:</p>
 <p><a href="<%= registerConfirmUrl %><%= user.confirmationToken %>"><%= registerConfirmUrl %><%= user.confirmationToken %></a></p>
 
-<p> Thanks for signing up to Regattable, slogan here. You can do lots of cool things here, all for free. If you have any questions, please visit <a href="<%= supportUrl %>"><%= supportUrl %></a>.</p>
+<p> Thanks for signing up to FriendGlu, slogan here. You can do lots of cool things here, all for free. If you have any questions, please visit <a href="<%= supportUrl %>"><%= supportUrl %></a>.</p>
 
 Cheers,<br>
-The Regattable Team<br>
+The FriendGlu Team<br>
 <br>
 
 <p>
 	<font size="1">
-    	Didn't sign up for Regattable? Please <a href="mailto:support+signup@regattable.com">let us know.</a> This message is intended for <%= user.email %>.
+    	Didn't sign up for FriendGlu? Please <a href="mailto:support+signup@FriendGlu.com">let us know.</a> This message is intended for <%= user.email %>.
     </font>
 </p>
 

@@ -1,4 +1,4 @@
-regattable
+friendglu
 ==========
 
-Regattable Website
+FriendGlu Website
