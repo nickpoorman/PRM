@@ -12,8 +12,8 @@ var nodemailer = require('nodemailer');
 var transport = nodemailer.createTransport("SMTP", {
   service: "Gmail",
   auth: {
-    user: "example@gmail.com",
-    pass: "pass"
+    user: "officialfriendglu@gmail.com",
+    pass: "Welove2glue"
   },
   maxConnections: 5
 });
@@ -31,9 +31,9 @@ module.exports = {
           // An example users object with formatted email function
           var locals = {
             user: user,
-            logoUrl: "http://zapwire.me/images/logo-sm.png",
-            registerConfirmUrl: "http://zapwire.me/verify-account/",
-            supportUrl: "http://support.zapwire.me/"
+            logoUrl: "http://friendglu.com/images/logo-sm.png",
+            registerConfirmUrl: "http://friendglu.com/verify-account/",
+            supportUrl: "http://support.friendglu.com/"
           };
 
           // Send a single email
@@ -44,7 +44,7 @@ module.exports = {
             } else {
               // send mail with defined transport object
               transport.sendMail({
-                from: "Zapwire.me <no-reply@zapwire.me>",
+                from: "friendglu.com <no-reply@friendglu.com>",
                 // sender address
                 to: user.email,
                 // list of receivers
@@ -80,9 +80,9 @@ module.exports = {
           // An example users object with formatted email function
           var locals = {
             user: user,
-            logoUrl: "http://zapwire.me/images/logo-sm.png",
-            resetPasswordUrl: "http://zapwire.me/reset-password",
-            supportUrl: "http://support.zapwire.me/"
+            logoUrl: "http://friendglu.com/images/logo-sm.png",
+            resetPasswordUrl: "http://friendglu.com/reset-password",
+            supportUrl: "http://support.friendglu.com/"
           };
 
           // Send a single email
@@ -93,12 +93,12 @@ module.exports = {
             } else {
               // send mail with defined transport object
               transport.sendMail({
-                from: "Zapwire.me <no-reply@zapwire.me>",
+                from: "friendglu.com <no-reply@friendglu.com>",
                 // sender address
                 to: user.email,
                 // list of receivers
                 //replyTo: "" // replyTo address - don't really need it
-                subject: "Regattable password reset confirmation",
+                subject: "FriendGlu password reset confirmation",
                 // Subject line
                 //text: text,
                 // plaintext body

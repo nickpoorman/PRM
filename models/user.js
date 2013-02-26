@@ -14,6 +14,9 @@ var crypto = require('crypto');
 var moment = require('moment');
 var async = require("async");
 
+// Schemas
+var ContactSchema = require('./contact').schema;
+
 var UserSchema = new Schema({
   createdAt: {
     type: Date
@@ -76,6 +79,9 @@ var UserSchema = new Schema({
   passwordResetTokenCreatedAt: {
     type: Date
   },
+  contacts: {
+    type: [ContactSchema]
+  }
 });
 
 UserSchema.pre('save', function(next) {
