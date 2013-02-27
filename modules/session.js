@@ -49,7 +49,9 @@ app.get('/login', function(req, res) {
 //TODO: use a custom middleware here instead of passport.authenticate (this way we can return our own message --and not in the flash)
 //http://passportjs.org/guide/authenticate.html
 app.post('/login', authenticate, function(req, res) {
-  return res.render('index');
+  // TODO: this should check the request url, if it isn't /login then it should redirect to that page
+  //res.redirect('back');
+  return res.redirect('/');
 });
 //+ DELETE  /sessions/:id       ->  destroy (/logout)
 // app.get("/logout", function(req, res){

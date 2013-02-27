@@ -321,6 +321,7 @@ function getResetPassword(req, res, next) {
 }
 
 function forgotPassword(req, res, next) {
+  console.log("calling forgotPassword");
   var params = ['email'];
   res.locals.params = {};
   for(var i = 0; i < params.length; i++) {
@@ -348,7 +349,7 @@ function forgotPassword(req, res, next) {
     }
     if(!user) {
       // send them back to the page with a flash message
-      return res.render('auth/forgot_password/forgot-password');
+      return res.render('auth/forgot_password/alert-invalid-email');
     }
 
     user.createPasswordResetToken(function(user) {

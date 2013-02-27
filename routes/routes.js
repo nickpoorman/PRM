@@ -13,19 +13,25 @@ var sanitize = require('validator').sanitize;
  *   the request will proceed.  Otherwise, the user will be redirected to the
  *   login page.
  */
-var ensureAuthenticated = function(req, res, next) {
-    if(req.isAuthenticated()) {
-      return next();
-    }
-    // TODO: this will probably have to be changed
-    res.send(["must auth"]);
-  };
+// var ensureAuthenticated = function(req, res, next) {
+//     if(req.isAuthenticated()) {
+//       return next();
+//     }
+//     // TODO: this will probably have to be changed
+//     res.send(["must auth"]);
+//   };
+passport.ensureAuthenticated = function(req, res, next) {
+  if(req.isAuthenticated()) {
+    return next();
+  }
+  //res.redirect('/login');
+  return res.render('auth/login/alert-login-required');
+}
 
 // var setResContentTypeToJSON = function(req, res, next) {
 //     res.type('json');
 //     return next();
 //   };
-
 /* escape helper for handlebars
  * It should escape <\script> tags to prevent XSS attacks. ie. <\/
  */
@@ -37,24 +43,30 @@ var ensureAuthenticated = function(req, res, next) {
 
 module.exports = function(app) {
   app.get("/", function(req, res) {
-    res.render("index", {homeActive: true});
+    res.render("index", {
+      homeActive: true
+    });
   });
 
   app.get("/company", function(req, res) {
-    res.render("company", {companyActive: true});
+    res.render("company", {
+      companyActive: true
+    });
   });
 
   app.get("/legalnotice", function(req, res) {
-    res.render("legalnotice", {companyActive: true});
+    res.render("legalnotice", {
+      companyActive: true
+    });
   });
 
   // route modules
   app.use(require('../modules/auth.js'));
   app.use(require('../modules/session.js'));
+  app.use(require('../modules/contact.js'));
 
-    // API
+  // API
   //app.all("/api*", setResContentTypeToJSON);
-
   // API - private Authentication filter - https://fabianosoriani.wordpress.com/
   //https://fabianosoriani.wordpress.com/2011/08/15/express-api-on-node-js-with-mysql-auth/
   //app.all("/api/private*", ensureAuthenticated);
