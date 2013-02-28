@@ -27,6 +27,10 @@ app.get('/contacts/new', passport.ensureAuthenticated, function(req, res) {
 
 app.post('/contacts', passport.ensureAuthenticated, validateContact, saveContact);
 
+app.get('/contacts', passport.ensureAuthenticated, getAllContacts, function(req, res, next){
+  return res.render('contact/index');
+});
+
 /* helpers ----------------------------------------------------- */
 
 function validateContact(req, res, next) {
@@ -84,10 +88,25 @@ function saveContact(req, res, next) {
     phone: req.body['phone'],
   });
 
-  contact.save(function(err) {
+  req.user.contacts.push(contact);
+
+  req.user.save(function(err) {
     if (err) {
-      return res.render('contact/alert-database-error');
+      return res.render('contact/alert-database-add-contact-error');
     }
-    return res.redirect('contact/test');
+    //TODO: change this to contact show
+    return res.render('contact/test');
   });
+}
+
+function getAllContacts(req, res, next){
+  var contacts = req.user.contacts;
+  if(!contacts || !contacts.length) {
+    //TODO: test this. not sure what it will do if it doesn't find any
+    // maybe it's not a big deal? or instead just render a page saying you dont have any. lets add one!
+    // send them back to the page with a flash message
+    return res.render('contact/contacts-empty');
+  }
+  res.locals.contacts = contacts;
+  return next();
 }
