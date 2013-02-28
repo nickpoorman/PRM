@@ -115,7 +115,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 // add the currentUser to locals
 app.use(function(req, res, next) {
-  res.locals.currentUser = req.user;
+  res.locals.user = req.user;
+  //res.locals.currentUser = req.user;
   res.locals.session = req.session;
   res.locals.title = "FriendGlu &middot; PRM";
   next();

@@ -1,0 +1,16 @@
+// session-nav
+.pull-right
+  ul.nav
+    if user
+      li
+        a(href="#")= user.firstName + ' ' + user.lastName
+      li
+        a(href="#") Settings
+      li
+        a(href="#") Logout
+    else
+      li
+        a(href="#") Signup
+      li
+        a(href="#") Login
+// end session-nav

@@ -13,6 +13,7 @@ var check = require('validator').check;
 var sanitize = require('validator').sanitize;
 
 var User = require('../models/user');
+var Contact = require('../models/contact');
 
 var app = module.exports = express();
 var viewPath = path.resolve(__dirname, '..', 'views');
@@ -24,9 +25,7 @@ app.get('/contacts/new', passport.ensureAuthenticated, function(req, res) {
   return res.render('contact/new');
 });
 
-app.post('/contacts', passport.ensureAuthenticated, validateContact, saveContact, function(req, res) {
-  return res.render('contact/test');
-});
+app.post('/contacts', passport.ensureAuthenticated, validateContact, saveContact);
 
 /* helpers ----------------------------------------------------- */
 
@@ -36,21 +35,21 @@ function validateContact(req, res, next) {
 
   // at least one field must be filled in
   var empty = 0;
-  for(var i = 0; i < params.length; i++) {
+  for (var i = 0; i < params.length; i++) {
     try {
       check(req.body[params[i]]).notEmpty();
-    } catch(err) {
+    } catch (err) {
       empty++;
     }
   }
-  if(empty >= params.length) {
+  if (empty >= params.length) {
     // at least one field must have a value
     return res.render('alert-no-data');
   }
 
   // now add all the fields to the views locals
   res.locals.params = {};
-  for(var i = 0; i < params.length; i++) {
+  for (var i = 0; i < params.length; i++) {
     res.locals.params[params[i]] = req.body[params[i]];
   }
 
@@ -60,7 +59,7 @@ function validateContact(req, res, next) {
   // TODO: do some sort of regex validator here
   //req.assert('phone', 'Phone number is too short.').notEmpty();
   var mappedErrors = req.validationErrors();
-  if(mappedErrors) {
+  if (mappedErrors) {
     // don't attempt to save, return the errors
     return res.render('contact/new', {
       errors: mappedErrors
@@ -76,6 +75,19 @@ function validateContact(req, res, next) {
   next();
 }
 
-function saveContact(req, res, next){
-  // TODO: save the contact now that it has been validated
+function saveContact(req, res, next) {
+  // save the contact now that it has been validated
+  var contact = new Contact({
+    firstName: req.body['firstName'],
+    lastName: req.body['lastName'],
+    company: req.body['company'],
+    phone: req.body['phone'],
+  });
+
+  contact.save(function(err) {
+    if (err) {
+      return res.render('contact/alert-database-error');
+    }
+    return res.redirect('contact/test');
+  });
 }
