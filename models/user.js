@@ -16,6 +16,7 @@ var async = require("async");
 
 // Schemas
 var ContactSchema = require('./contact').schema;
+var CustomFieldSchema = require('./custom-field').schema;
 
 var UserSchema = new Schema({
   createdAt: {
@@ -81,6 +82,11 @@ var UserSchema = new Schema({
   },
   contacts: {
     type: [ContactSchema]
+  },
+  // these hold all the custom field labels the user has created,
+  // so we can populate a drop down when they go looking for one
+  customFields: {
+    type: [CustomFieldSchema]
   }
 });
 

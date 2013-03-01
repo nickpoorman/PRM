@@ -1,0 +1,16 @@
+extends ../layout
+include ../mixins/form-helpers
+
+block content
+  .container
+    // new contact form
+    form(action="/contacts/" + contact.id, method="post")
+      mixin field('text', 'firstName', 'First Name')
+      mixin field('text', 'lastName', 'Last Name')
+      mixin field('text', 'company', 'Company')
+      mixin field('text', 'phone', 'Phone Number')
+      input(type="hidden", name="_method", value="put")
+      .control-group
+        .controls
+          input(type="submit", value="Save", class="btn btn-primary")
+    // end new contact form

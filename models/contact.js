@@ -9,6 +9,12 @@ var Schema = mongoose.Schema;
 var TalkedSchema = require('./talked').schema;
 
 var ContactSchema = new Schema({
+  createdAt: {
+    type: Date
+  },
+  updatedAt: {
+    type: Date
+  },
   firstName: {
     type: String,
     trim: true
@@ -28,6 +34,14 @@ var ContactSchema = new Schema({
   talked: {
     type: [TalkedSchema]
   }
+});
+
+ContactSchema.pre('save', function(next) {
+  this.updatedAt = new Date();
+  if(!this.createdAt) {
+    this.createdAt = new Date();
+  }
+  next();
 });
 
 module.exports = mongoose.model("Contact", ContactSchema);

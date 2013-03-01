@@ -1,4 +1,6 @@
 mixin field(type, name, placeholder)
+  if typeof loadedModel !== 'undefined'
+    value = loadedModel[name]
   if typeof params !== 'undefined'
     value = params[name]
   cg = 'control-group'

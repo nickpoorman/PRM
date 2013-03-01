@@ -1,27 +1,26 @@
 /**
- * Talked Schema
+ * Contact Schema
  */
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var TalkedSchema = new Schema({
+// Schemas
+
+var CustomFieldSchema = new Schema({
   createdAt: {
     type: Date
   },
   updatedAt: {
     type: Date
   },
-  when: {
-    type: Date
-  },
-  about: {
+  label: {
     type: String,
     trim: true
   }
 });
 
-TalkedSchema.pre('save', function(next) {
+CustomFieldSchema.pre('save', function(next) {
   this.updatedAt = new Date();
   if(!this.createdAt) {
     this.createdAt = new Date();
@@ -29,4 +28,4 @@ TalkedSchema.pre('save', function(next) {
   next();
 });
 
-module.exports = mongoose.model("Talked", TalkedSchema);
+module.exports = mongoose.model("CustomField", CustomFieldSchema);

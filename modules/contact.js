@@ -35,6 +35,13 @@ app.get('/contacts/:id', passport.ensureAuthenticated, getContact, function(req,
   return res.render('contact/show');
 });
 
+app.get('/contacts/:id/edit', passport.ensureAuthenticated, getContact, function(req, res, next){
+  res.locals.loadedModel = res.locals.contact;
+  return res.render('contact/edit');
+});
+
+app.put('/contacts/:id', passport.ensureAuthenticated, validateContact, getContact, updateContact);
+
 /* helpers ----------------------------------------------------- */
 
 function validateContact(req, res, next) {
@@ -99,7 +106,7 @@ function saveContact(req, res, next) {
       return res.render('contact/alert-database-add-contact-error');
     }
     //TODO: change this to contact show
-    return res.render('contact/test');
+    return res.redirect('/contacts/' + contact.id);
   });
 }
 
@@ -121,13 +128,29 @@ function getContact(req, res, next){
 
   // if the contact doesn't exist send them to the index page with an error
   if(!contact){
-    console.log("didn't find contact");
     res.locals.contacts = contacts;
     return getAllContacts(req, res, function(){
       return res.render('contact/alert-contact-does-not-exist');
     });
   }
-console.log('found contact');
+
   res.locals.contact = contact;
   next();
+}
+
+function updateContact(req, res, next) {
+  // save the contact now that it has been validated
+  var contact = res.locals.contact;
+  contact.firstName = req.body['firstName'];
+  contact.lastName = req.body['lastName'];
+  contact.company = req.body['company'];
+  contact.phone = req.body['phone'];
+
+  req.user.save(function(err) {
+    if (err) {
+      return res.render('contact/alert-database-add-contact-error');
+    }
+    //TODO: change this to contact show
+    return res.redirect('/contacts/' + contact.id);
+  });
 }
