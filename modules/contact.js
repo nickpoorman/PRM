@@ -31,6 +31,10 @@ app.get('/contacts', passport.ensureAuthenticated, getAllContacts, function(req,
   return res.render('contact/index');
 });
 
+app.get('/contacts/:id', passport.ensureAuthenticated, getContact, function(req, res, next){
+  return res.render('contact/show');
+});
+
 /* helpers ----------------------------------------------------- */
 
 function validateContact(req, res, next) {
@@ -109,4 +113,21 @@ function getAllContacts(req, res, next){
   }
   res.locals.contacts = contacts;
   return next();
+}
+
+function getContact(req, res, next){
+  var contacts = req.user.contacts;
+  var contact = contacts.id(req.param('id'));
+
+  // if the contact doesn't exist send them to the index page with an error
+  if(!contact){
+    console.log("didn't find contact");
+    res.locals.contacts = contacts;
+    return getAllContacts(req, res, function(){
+      return res.render('contact/alert-contact-does-not-exist');
+    });
+  }
+console.log('found contact');
+  res.locals.contact = contact;
+  next();
 }

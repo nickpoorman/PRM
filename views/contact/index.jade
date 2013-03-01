@@ -7,5 +7,5 @@ block content
       ul
         each contact in contacts
           li
-            = contact.firstName + ' ' + contact.lastName
+            a(href='/contacts/' + contact.id)= contact.firstName + ' ' + contact.lastName
     // end contact index

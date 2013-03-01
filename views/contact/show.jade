@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+  .container
+    // contact show
+    ul
+      li= contact.firstName + ' ' + contact.lastName
+      li= contact.company
+      each phone in contact.phone
+        li= phone
+    // end contact show
