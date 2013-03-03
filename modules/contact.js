@@ -27,20 +27,22 @@ app.get('/contacts/new', passport.ensureAuthenticated, function(req, res) {
 
 app.post('/contacts', passport.ensureAuthenticated, validateContact, saveContact);
 
-app.get('/contacts', passport.ensureAuthenticated, getAllContacts, function(req, res, next){
+app.get('/contacts', passport.ensureAuthenticated, getAllContacts, function(req, res, next) {
   return res.render('contact/index');
 });
 
-app.get('/contacts/:id', passport.ensureAuthenticated, getContact, function(req, res, next){
+app.get('/contacts/:id', passport.ensureAuthenticated, getContact, function(req, res, next) {
   return res.render('contact/show');
 });
 
-app.get('/contacts/:id/edit', passport.ensureAuthenticated, getContact, function(req, res, next){
+app.get('/contacts/:id/edit', passport.ensureAuthenticated, getContact, function(req, res, next) {
   res.locals.loadedModel = res.locals.contact;
   return res.render('contact/edit');
 });
 
 app.put('/contacts/:id', passport.ensureAuthenticated, validateContact, getContact, updateContact);
+
+app.del('/contacts/:id', passport.ensureAuthenticated, deleteContact);
 
 /* helpers ----------------------------------------------------- */
 
@@ -110,9 +112,9 @@ function saveContact(req, res, next) {
   });
 }
 
-function getAllContacts(req, res, next){
+function getAllContacts(req, res, next) {
   var contacts = req.user.contacts;
-  if(!contacts || !contacts.length) {
+  if (!contacts || !contacts.length) {
     //TODO: test this. not sure what it will do if it doesn't find any
     // maybe it's not a big deal? or instead just render a page saying you dont have any. lets add one!
     // send them back to the page with a flash message
@@ -122,14 +124,14 @@ function getAllContacts(req, res, next){
   return next();
 }
 
-function getContact(req, res, next){
+function getContact(req, res, next) {
   var contacts = req.user.contacts;
   var contact = contacts.id(req.param('id'));
 
   // if the contact doesn't exist send them to the index page with an error
-  if(!contact){
+  if (!contact) {
     res.locals.contacts = contacts;
-    return getAllContacts(req, res, function(){
+    return getAllContacts(req, res, function() {
       return res.render('contact/alert-contact-does-not-exist');
     });
   }
@@ -153,4 +155,17 @@ function updateContact(req, res, next) {
     //TODO: change this to contact show
     return res.redirect('/contacts/' + contact.id);
   });
+}
+
+function deleteContact(req, res, next) {
+  var contacts = req.user.contacts;
+  var contact = contacts.id(req.param('id'));
+
+  contact.remove();
+  req.user.save(function(err) {
+    if (err) {
+      return res.render('contact/alert-database-remove-contact-error');
+    }
+  });
+  return res.redirect('/contacts');
 }

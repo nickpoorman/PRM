@@ -8,4 +8,9 @@ block content
         each contact in contacts
           li
             a(href='/contacts/' + contact.id)= contact.firstName + ' ' + contact.lastName
+            form(action='/contacts/' + contact.id, method='post')
+              input(type="hidden", name="_method", value="delete")
+              .control-group
+                .controls
+                  input(type="submit", value="Delete", class="btn btn-primary")
     // end contact index
