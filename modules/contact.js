@@ -3,6 +3,7 @@
  */
 
 var debug = true;
+var util = require('util')
 var path = require("path");
 var express = require("express");
 
@@ -14,6 +15,7 @@ var sanitize = require('validator').sanitize;
 
 var User = require('../models/user');
 var Contact = require('../models/contact');
+var CustomField = require('../models/custom-field');
 
 var app = module.exports = express();
 var viewPath = path.resolve(__dirname, '..', 'views');
@@ -25,7 +27,7 @@ app.get('/contacts/new', passport.ensureAuthenticated, function(req, res) {
   return res.render('contact/new');
 });
 
-app.post('/contacts', passport.ensureAuthenticated, validateContact, saveContact);
+app.post('/contacts', passport.ensureAuthenticated, validateContact, validateCustomField, saveContact);
 
 app.get('/contacts', passport.ensureAuthenticated, getAllContacts, function(req, res, next) {
   return res.render('contact/index');
@@ -47,8 +49,9 @@ app.del('/contacts/:id', passport.ensureAuthenticated, deleteContact);
 /* helpers ----------------------------------------------------- */
 
 function validateContact(req, res, next) {
+  console.log(util.inspect(req.body));
   // going to do the validations here
-  var params = ['firstName', 'lastName', 'company', 'phone'];
+  var params = ['firstName', 'lastName', 'company'];
 
   // at least one field must be filled in
   var empty = 0;
@@ -86,9 +89,32 @@ function validateContact(req, res, next) {
   req.sanitize('firstName').trim();
   req.sanitize('lastName').trim();
   req.sanitize('company').trim();
-  req.sanitize('phone').trim();
 
   // if there is only a number it will be displayed under a category called # on the page
+  next();
+}
+
+function validateCustomField(req, res, next) {
+  var params = ['phone', 'phoneLabel'];
+  // first check if they are an array
+  var customPhones = req.body['customPhones'] = req.body['customPhones'] || [];
+  var phones = req.body['phone'];
+  var phoneLabels = req.body['phoneLabel'];
+  if (Array.isArray(phones) && Array.isArray(phoneLabels)) {
+    // maybe trim the fields?, make sure the arrays are the same length?
+    // for now lets just put it into a nice format that we can save
+    // TODO: also create a custom field for any that are created so we can load them later
+    for (var i = 0; i < phones.length && i < phoneLabels.length; i++) {
+      var label = phoneLabels[i];
+      var value = phones[i];
+      customPhones.push({
+        label: label,
+        value: value
+      });
+    }
+  }
+  // maybe now trim the fields?
+  // TODO: trim the fields
   next();
 }
 
@@ -98,7 +124,7 @@ function saveContact(req, res, next) {
     firstName: req.body['firstName'],
     lastName: req.body['lastName'],
     company: req.body['company'],
-    phone: req.body['phone'],
+    phones: req.body['customPhones'],
   });
 
   req.user.contacts.push(contact);

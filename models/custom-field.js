@@ -17,6 +17,10 @@ var CustomFieldSchema = new Schema({
   label: {
     type: String,
     trim: true
+  },
+  value: {
+    type: String,
+    trim: true
   }
 });
 

@@ -9,7 +9,7 @@ block content
       mixin field('text', 'lastName', 'Last Name')
       mixin field('text', 'company', 'Company')
       .control-group
-        select.control-label(name='phoneLabel') 
+        select.control-label(name='selectPhone') 
           option(value="mobile") mobile
           option(value="iPhone") iPhone
           option(value="home") home
@@ -21,21 +21,7 @@ block content
           option(value="pager") pager
           option(value="other") other
         .controls
-          input(type='text', name='phone', placeholder='Phone')
-      .control-group
-        select.control-label(name='phoneLabel') 
-          option(value="mobile") mobile
-          option(value="iPhone") iPhone
-          option(value="home") home
-          option(value="work") work
-          option(value="main") main
-          option(value="homeFax") home fax
-          option(value="workFax") work fax
-          option(value="otherFax") other fax
-          option(value="pager") pager
-          option(value="other") other
-        .controls
-          input(type='text', name='phone', placeholder='Phone')
+          input(type='text', name='phoneValue', placeholder='Phone')
       .control-group
         .controls
           input(type="submit", value="Save", class="btn btn-primary")

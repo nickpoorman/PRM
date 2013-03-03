@@ -6,6 +6,6 @@ block content
     ul
       li= contact.firstName + ' ' + contact.lastName
       li= contact.company
-      each phone in contact.phone
-        li= phone
+      each phone in contact.phones
+        li= phone.label + ' ' + phone.value
     // end contact show

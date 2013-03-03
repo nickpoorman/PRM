@@ -7,6 +7,7 @@ var Schema = mongoose.Schema;
 
 // Schemas
 var TalkedSchema = require('./talked').schema;
+var CustomFieldSchema = require('./custom-field').schema;
 
 var ContactSchema = new Schema({
   createdAt: {
@@ -27,10 +28,9 @@ var ContactSchema = new Schema({
     type: String,
     trim: true
   },
-  phone: [{
-    type: String,
-    trim: true
-  }],
+  phones: {
+    type: [CustomFieldSchema]
+  },
   talked: {
     type: [TalkedSchema]
   }
