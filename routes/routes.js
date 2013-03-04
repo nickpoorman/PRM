@@ -64,6 +64,7 @@ module.exports = function(app) {
   app.use(require('../modules/auth.js'));
   app.use(require('../modules/session.js'));
   app.use(require('../modules/contact.js'));
+   app.use(require('../modules/talked.js'));
 
   // API
   //app.all("/api*", setResContentTypeToJSON);

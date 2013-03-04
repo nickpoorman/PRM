@@ -1,0 +1,14 @@
+extends ../../layout
+include ../../mixins/form-helpers
+
+block content
+  .container
+    // new contact form
+    form.form-horizontal(action="/contacts/" + contact.id + '/talked', method="post")
+    .control-group
+      .controls
+        textarea.span12(autofocus, required, name="talked", placeholder="Place a note on what you last spoke about...")
+    .control-group
+      .controls
+        input(type="submit", value="Save", class="btn btn-primary")
+    // end new contact form
