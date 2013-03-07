@@ -1,0 +1,44 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+body {
+  /*color: #5a5a5a;*/
+
+}
+.sm-border {
+  border: 5px solid #5a5a5a;
+  background-position: 5px 5px;
+}
+.box-shadow {
+  -moz-box-shadow: 10px 10px 10px #000;
+  /* Firefox */
+  -webkit-box-shadow: 10px 10px 10px #000;
+  /* Safari, Chrome */
+  box-shadow: 10px 10px 10px #000;
+  /* CSS3 */
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+ul .stats {
+  overflow: hidden;
+  float: left;
+  padding: 7px 12px;
+  color: #999;
+  font-size: 10px;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+ul .stats li {
+  display: inline;
+}
+ul .stats strong {
+  display: block;
+  font-size: 14px;
+  color: #333333;
+}
+ul .test {
+  color: red;
+}

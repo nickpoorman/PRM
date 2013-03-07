@@ -1,4 +1,40 @@
 extends layout
 
 block content
-  p
+  .container
+    .row
+      .span3
+        .week
+          .row
+            .profile-summary
+              | This week's queue.
+          .row
+            ul.stats
+              li
+                .the-stats
+                  strong
+                    | 4
+                  | LEFT
+              li
+                .the-stats
+                  strong
+                    | 2
+                  | DONE
+        .week
+          .row
+            .profile-summary
+              | Last week's queue.
+          .row
+            ul.stats
+              li
+                .the-stats
+                  strong
+                    | 4
+                  | LEFT
+              li
+                .the-stats
+                  strong
+                    | 2
+                  | DONE
+      .span9
+        | this is just some testing text
