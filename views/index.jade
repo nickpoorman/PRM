@@ -37,4 +37,36 @@ block content
                     | 2
                   | DONE
       .span9
-        | this is just some testing text
+        .stream-container
+          h2.friend-queue
+            | Friend Queue
+          .stream
+            ol.stream-items
+              li.stream-item
+                .picture
+                  img.img-rounded(data-src="holder.js/70x70")
+                .graph
+                  img.img-rounded(data-src="holder.js/70x70")
+                .row
+                  .span3.offset1
+                    .name
+                      | Anthony Campanella
+                    .note
+                      .control-group
+                        .controls
+                          input(type="text", placeholder="Place a note...")
+                  .span3
+                    .info
+                      .one
+                        | mobile: (313)-313-3131
+                      .two
+                        | work: (313)-313-3131
+                      .three
+                        | iPhone: (313)-313-3131
+                  .span1
+                    .date.box-round
+                      .month
+                        | Aug
+                      .day
+                        strong
+                          | 22
