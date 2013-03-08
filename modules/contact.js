@@ -24,6 +24,7 @@ app.set('view engine', 'jade');
 
 // passport.ensureAuthenticated, 
 app.get('/contacts/new', passport.ensureAuthenticated, function(req, res) {
+  res.locals.nav = 'Add Friend';
   return res.render('contact/new');
 });
 

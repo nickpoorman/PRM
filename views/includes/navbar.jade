@@ -5,13 +5,13 @@
       .brand
           | FriendGlu
       ul.nav
-        li.active
+        li(class=(nav === 'Home' ? 'active' : ''))
           a(href="/") Home
-        li
-          a(href="/") Add Friend
-        li
+        li(class=(nav === 'Add Friend' ? 'active' : ''))
+          a(href="/contacts/new") Add Friend
+        li(class=(nav === 'All Friends' ? 'active' : ''))
           a(href="/") All Friends
-        li
+        li(class=(nav === 'Graphs' ? 'active' : ''))
           a(href="/") Graphs
       include session-nav
 //end navbar

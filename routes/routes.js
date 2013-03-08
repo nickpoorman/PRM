@@ -44,20 +44,12 @@ passport.ensureAuthenticated = function(req, res, next) {
 module.exports = function(app) {
   app.get("/", function(req, res) {
     res.render("index", {
-      homeActive: true
-    });
-  });
-
-  app.get("/company", function(req, res) {
-    res.render("company", {
-      companyActive: true
+      nav: 'Home'
     });
   });
 
   app.get("/legalnotice", function(req, res) {
-    res.render("legalnotice", {
-      companyActive: true
-    });
+    res.render("legalnotice");
   });
 
   // route modules
