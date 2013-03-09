@@ -56,15 +56,66 @@
 	}
 }
 
+// didn't really feel like doing the calculus for this to max spans
+@c1: 960px;
+@s1: 460px;
+@s2: 23px;
+@sp1: (@s1 - @s2);
+@s3: (@c1 - (@sp1 * 2));
+@s4: floor((@s3 / 3));
+@spacing: @s4;
+
 .list-head {
 	background-color: whitesmoke;
 	line-height: 1.28;
+	border-top: 1px solid lightgrey;
+	border-left: 1px solid lightgrey;
+	border-right: 1px solid lightgrey;
 	h4 {
 		margin: 16px;
-		margin-left: 20px;
+		margin-left: @spacing;
 	}
 }
 
 .friend-list {
-
+	padding-top: 10px;
+	border-left: 1px solid lightgrey;
+	border-right: 1px solid lightgrey;
+	ul {
+	    list-style: none;
+	    padding: 0;
+	    margin: 0;
+	    display: block;
+	    margin-left: @spacing;
+	    li {
+	    	padding-top: 10px;
+			padding-bottom: 10px;
+	    	&.span6 {
+	    		width: @sp1;
+	    		margin-left: 0px;
+	    		margin-right: @spacing;
+	    		border-bottom: 1px solid lightgrey;
+	    		img {
+	    			float: left;
+	    			margin-right: 10px;
+	    		}
+	    		.mid-block-a {
+		    			display: inline-block;
+		    		.mid-block-b {
+		    			vertical-align: middle;
+			    		.name {
+			    		}
+			    		.company {
+			    		}
+			    		.time {
+			    			//margin-right: 21px;
+			    		}
+		    		}
+		    		.mid-block-c {
+		    			height: 75px;
+		    		}
+	    		}
+	    	}
+	    }
+	}
 }
