@@ -31,6 +31,7 @@ app.get('/contacts/new', passport.ensureAuthenticated, function(req, res) {
 app.post('/contacts', passport.ensureAuthenticated, validateContact, validateCustomField, saveContact);
 
 app.get('/contacts', passport.ensureAuthenticated, getAllContacts, function(req, res, next) {
+  res.locals.nav = 'All Friends';
   return res.render('contact/index');
 });
 

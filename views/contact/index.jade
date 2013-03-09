@@ -1,16 +1,35 @@
 extends ../layout
 
 block content
-  .container
-    // contact index
-    if typeof contacts !== 'undefined'
-      ul
-        each contact in contacts
-          li
-            a(href='/contacts/' + contact.id)= contact.firstName + ' ' + contact.lastName
-            form(action='/contacts/' + contact.id, method='post')
-              input(type="hidden", name="_method", value="delete")
-              .control-group
-                .controls
-                  input(type="submit", value="Delete", class="btn btn-primary")
-    // end contact index
+  #contact-index-container
+    .container
+      .row.sub-menu
+        ul
+          li.span3
+            a(href="/contacts")
+              span
+                strong
+                  | 233
+                .muted
+                  | Friends
+          li.span3
+            a(href="/contacts")
+              span
+                strong
+                  | 3
+                .muted
+                  | Recently Added
+          li.span3
+            a(href="/contacts")
+              span
+                strong
+                  | 14
+                .muted
+                  | Great Friends
+          li.span3
+            a(href="/contacts")
+              span
+                strong
+                  | 21
+                .muted
+                  | Not So Great Friends
