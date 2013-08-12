@@ -1,4 +1,4 @@
-It's a service that allows you to maintain your personal relationships with people. Social networking leaves relationships distant. It's easy to have hundreds of facebook friends these days and only talk to less then 1% of them on a regular basis. Using our personal relationship managment software it's easy to maintain friendships with more people, thus cementing your connections for years to come.
+It's a service that allows you to maintain your personal relationships with people. Social networking leaves relationships distant. It's easy to have hundreds of facebook friends these days and only talk to less then 1% of them on a regular basis. Using this personal relationship managment software it's easy to maintain friendships with more people, thus cementing your connections for years to come.
 
 We provide a platform for building a sound foundation for your friendships. friendcement.com
 
@@ -7,8 +7,3 @@ Basically it's a service that reminds you to call your friends.
 PRM
 Personal Relationship Management
 
-personable
-
-stranger
-danger
-diligence

@@ -24,9 +24,9 @@ var clientOption = {};
 /* Only use in production environment */
 if('production' == app.get('env')) {
   var redis = require('redis');
-  var client = redis.createClient(6379, 'nodejitsudb5457318215.redis.irstack.com');
+  var client = redis.createClient(6379, '...');
   clientOption = { client: client };
-  client.auth('nodejitsudb5457318215.redis.irstack.com............', function(err) {
+  client.auth('............', function(err) {
     if(err) {
       throw err;
     }
@@ -44,7 +44,7 @@ var mongoose = require('mongoose');
 //var Schema = mongoose.Schema;
 var uri = "mongodb://localhost/friendglu"
 if('production' == app.get('env')) {
-  uri = 'mongodb://nodejitsu_nickpoorman.............';
+  uri = 'mongodb://.............';
 }
 //var conn = mongoose.createConnection(uri, {server:{poolSize:2}}); // this doesn't seem to be working
 mongoose.connect(uri);

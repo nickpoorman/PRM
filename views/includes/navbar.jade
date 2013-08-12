@@ -6,12 +6,12 @@
           | FriendGlu
       ul.nav
         li(class=(nav === 'Home' ? 'active' : ''))
-          a(href="/") Home
+          a(href="/#!watch") Home
         li(class=(nav === 'Add Friend' ? 'active' : ''))
-          a(href="/contacts/new") Add Friend
+          a(href="/contacts/new#!watch") Add Friend
         li(class=(nav === 'All Friends' ? 'active' : ''))
-          a(href="/contacts") All Friends
+          a(href="/contacts#!watch") All Friends
         li(class=(nav === 'Graphs' ? 'active' : ''))
-          a(href="/") Graphs
+          a(href="/#!watch") Graphs
       include session-nav
 //end navbar
